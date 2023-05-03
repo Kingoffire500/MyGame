@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.EventSystems;
 
 public class Node : MonoBehaviour
 {
@@ -14,6 +15,10 @@ public class Node : MonoBehaviour
     }
     void OnMouseDown() // S'active quand on click sur le collider
     {
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            return;
+        }
         if (!BuildManager.instance.CanBuild ) //permet de poser une tourelle seulement si on en à selectionner une dans le shop 
         {
             return;
@@ -28,6 +33,10 @@ public class Node : MonoBehaviour
     // The mesh goes red when the mouse is over it...
     void OnMouseEnter()
     {
+        if(EventSystem.current.IsPointerOverGameObject())
+        {
+            return;
+        }
         if (!BuildManager.instance.CanBuild)
         {
             return;

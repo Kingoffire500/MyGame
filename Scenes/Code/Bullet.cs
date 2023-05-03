@@ -7,6 +7,7 @@ public class Bullet : MonoBehaviour
     private Transform target;
     public float speed = 70f;
     public float explosionRadius = 0f;
+    public GameObject impactEffect;
     public void Seek(Transform _target) // Pour aller chercher la target que j'ai fait dans le code Enemy
     {
         target = _target;
@@ -47,6 +48,8 @@ public class Bullet : MonoBehaviour
         }
         
         Destroy(gameObject);
+        GameObject effectIns = (GameObject)Instantiate(impactEffect, transform.position, transform.rotation);
+        Destroy(effectIns, 5f);
     }
 
     void Explode()
