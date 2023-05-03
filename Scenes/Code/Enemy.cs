@@ -7,6 +7,20 @@ public class Enemy : MonoBehaviour
     public float speed = 10f; // Permet de gérer la vitesse des ennemis
     private Transform target; // Création de la variable target 
     private int wavepointIndex = 0;
+    public int health= 100;
+
+    public void TakeDamage(int amount)
+    {
+        health -= amount;
+        if (health <=0)
+        {
+            Die();
+        }
+    void Die()
+        {
+            Destroy(gameObject);
+        }
+    }
 
     // L'ennemie commence au waypoint 0 de la liste 
     void Start ()
@@ -31,10 +45,15 @@ public class Enemy : MonoBehaviour
         // Boucle pour détruire l'ennemie une fois arrivé à la fin
         if (wavepointIndex >= Waypoints.points.Length - 1)
         {
-            Destroy(gameObject);
+            EndPath();
             return;
         }
         wavepointIndex++; // Augmenetation de 1 de l'index 
         target = Waypoints.points[wavepointIndex]; //la variable target prend la postion du waypoint suivant
+    }
+    void EndPath()
+    {
+        PlayerStats.Lives--;
+        Destroy(gameObject);
     }
 }

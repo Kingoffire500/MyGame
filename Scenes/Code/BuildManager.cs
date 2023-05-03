@@ -24,6 +24,8 @@ public class BuildManager : MonoBehaviour
 
     public bool CanBuild { get { return turretToBuild != null; } } // permet de mettre une condition directement sur la variable CanBuild (si turretToBuild est different de null alors CanBuild = True)
 
+    public bool AsMoney { get { return PlayerStats.Money >= turretToBuild.cost; } }//Condition pour voir si on a assez d'argent pour faire la tourelle 
+
     public void SelectTurretToBuild(TurretBlueprint turret)
     {
         turretToBuild = turret;

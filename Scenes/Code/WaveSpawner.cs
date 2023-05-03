@@ -24,13 +24,15 @@ public class WaveSpawner : MonoBehaviour
             countdown = timeBetweenWaves; // On setup le nouveau temps choisi
         }
         countdown -= Time.deltaTime; //On vient diminuer le countdown de 1 chaque seconde
-        waveCountdownText.text = Mathf.Round(countdown).ToString(); // Permet un affichage du temps entre chaque vague dans l'UI
+        countdown = Mathf.Clamp(countdown, 0f, Mathf.Infinity); // Permet d'eviter que le timer aille en dessous de 0 
+        waveCountdownText.text = string.Format("{0:00.00}", countdown);  // Permet un affichage du temps entre chaque vague dans l'UI
     }
 
     // Fonction permettant de faire spawn des vagues 
     IEnumerator SpawnWave() // IEnumerator va de pair avec la fonction SatrtCoroutine
     {
         waveIndex++; //Augmente de 1 le numéro de la vague
+        PlayerStats.Rounds++; 
         for (int i = 0; i < waveIndex; i++)// Dans la conditions, on vient dire de faire spawn un ennemis jusqu'a numéro de la vague
         {
             SpawnEnemy();

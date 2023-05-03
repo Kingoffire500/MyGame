@@ -32,8 +32,16 @@ public class Node : MonoBehaviour
         {
             return;
         }
-        rend.material.color = Couleur;
+        if (BuildManager.instance.AsMoney)
+        {
+            rend.material.color = Couleur;
+        }
+        else
+        {
+            rend.material.color = Color.red;
+        }
     }
+        
 
 
     // ...and the mesh finally turns white when the mouse moves away.
