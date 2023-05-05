@@ -108,7 +108,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 961497208975721378}
-  m_LocalRotation: {x: -0, y: 0.2793615, z: -0, w: 0.96018606}
+  m_LocalRotation: {x: 0.000000021855694, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.000000007450581, y: 0.6820341, z: 0.0004019551}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -260,9 +260,9 @@ GameObject:
   m_Component:
   - component: {fileID: 961497208975302534}
   - component: {fileID: 961497208968343648}
-  - component: {fileID: 3733811493025536392}
+  - component: {fileID: -231168752527763873}
   m_Layer: 0
-  m_Name: Missile_turret
+  m_Name: Missile_turret upgraded
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -308,7 +308,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &3733811493025536392
+--- !u!114 &-231168752527763873
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -321,12 +321,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 10
-  fireRate: 1
+  fireRate: 1.5
   enemyTag: Enemy
   turnSpeed: 10
-  partToRotate: {fileID: 961497208975302530}
-  bulletPrefab: {fileID: 2240303612597096649, guid: f94b31a98522fcd4ebb2875b3965ed86, type: 3}
-  firePoint: {fileID: 1846345849254933009}
+  partToRotate: {fileID: 961497208975302530, guid: 177c1488eb6f7d64fabfbd7675a7a5bf, type: 3}
+  bulletPrefab: {fileID: 2240303612597096649, guid: 18d0e5dd70905634ead49b8e2aab393c, type: 3}
+  firePoint: {fileID: 1846345849254933009, guid: 177c1488eb6f7d64fabfbd7675a7a5bf, type: 3}
   useLaser: 0
   damageOverTime: 30
   slowPct: 0.5

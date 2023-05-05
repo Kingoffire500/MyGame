@@ -122,7 +122,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 484825291218366655, guid: de9bbf65561b1ab4cb9c92915c66c658, type: 3}
       propertyPath: looping
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 484825291218366655, guid: de9bbf65561b1ab4cb9c92915c66c658, type: 3}
       propertyPath: lengthInSec
@@ -202,7 +202,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3144186870940748193, guid: de9bbf65561b1ab4cb9c92915c66c658, type: 3}
       propertyPath: m_Name
-      value: ExplosiveEffect
+      value: ExplosiveEffect Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: de9bbf65561b1ab4cb9c92915c66c658, type: 3}

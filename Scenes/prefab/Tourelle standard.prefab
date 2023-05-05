@@ -459,7 +459,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5206148873190405867}
   - component: {fileID: 5206148873198147841}
-  - component: {fileID: 5206148874048575600}
+  - component: {fileID: -2362382481708012938}
   m_Layer: 0
   m_Name: Tourelle standard
   m_TagString: Untagged
@@ -506,7 +506,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &5206148874048575600
+--- !u!114 &-2362382481708012938
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -515,13 +515,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 5206148873190894283}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 730f46b9f0ddba64282b51d6e7aadf9a, type: 3}
+  m_Script: {fileID: 11500000, guid: 4ade13694d6efd946854802c1390d76b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 15
+  range: 20
   fireRate: 1
   enemyTag: Enemy
   turnSpeed: 10
   partToRotate: {fileID: 5206148873190405863}
   bulletPrefab: {fileID: 6293502799095471071, guid: 57437055c48ef7841b41432238f4fc2d, type: 3}
   firePoint: {fileID: 3718709822069189584}
+  useLaser: 0
+  damageOverTime: 30
+  slowPct: 0.5
+  lineRenderer: {fileID: 0}
+  impactEffect: {fileID: 0}
