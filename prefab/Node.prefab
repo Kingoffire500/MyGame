@@ -97,8 +97,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d7d4df8e3ec9c042a89489fa485e69b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  turret: {fileID: 0}
+  turretBlueprint:
+    prefab: {fileID: 0}
+    cost: 0
+    upgradedPrefab: {fileID: 0}
+    upgradeCost: 0
+  isUpgraded: 0
   Couleur: {r: 0, g: 0, b: 0, a: 0}
   PositionOffSet: {x: 0, y: 0.5, z: 0}
+  position: {x: 0, y: 8, z: 2}
 --- !u!65 &5221661404032944866
 BoxCollider:
   m_ObjectHideFlags: 0
