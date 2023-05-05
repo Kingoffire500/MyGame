@@ -2,28 +2,47 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+[RequireComponent(typeof(Enemy))]
 public class Enemy : MonoBehaviour
 {
-    public float speed = 10f; // Permet de gérer la vitesse des ennemis
+    public float startSpeed = 10f;
+    [HideInInspector]
+    public float speed ; // Permet de gérer la vitesse des ennemis
     private Transform target; // Création de la variable target 
-    private int wavepointIndex = 0;
-    public int health= 100;
 
-    public void TakeDamage(int amount)
+    private int wavepointIndex = 0;
+    private Enemy enemy;
+
+    public float health = 100;
+    public int value = 50;
+
+
+    public void TakeDamage(float amount)
     {
         health -= amount;
-        if (health <=0)
+        if (health <= 0)
         {
             Die();
         }
+    }
     void Die()
-        {
-            Destroy(gameObject);
-        }
+    {
+        PlayerStats.Money += value;
+        Destroy(gameObject);
+        WaveSpawner.EnemiesAlive--;
+
     }
 
+    public void Slow(float pct)
+    {
+        speed = startSpeed * (1f - pct);
+    }
+    
+
+
     // L'ennemie commence au waypoint 0 de la liste 
-    void Start ()
+    void Start()
     {
         target = Waypoints.points[wavepointIndex];
     }
@@ -34,11 +53,11 @@ public class Enemy : MonoBehaviour
 
         //Mis en place d'une conditions de secours en cas de bug qui assure un bon fonctionnement du code. Ici, nous allons mettre une durée max où l'ennemie est sur un waypoint
 
-        if(Vector3.Distance(transform.position, target.position) <=0.2f)
+        if (Vector3.Distance(transform.position, target.position) <= 0.2f)
         {
             GetNextWaypoint();
         }
-
+        speed = startSpeed;
     }
     void GetNextWaypoint()
     {
@@ -55,5 +74,7 @@ public class Enemy : MonoBehaviour
     {
         PlayerStats.Lives--;
         Destroy(gameObject);
+        WaveSpawner.EnemiesAlive--;
     }
+
 }

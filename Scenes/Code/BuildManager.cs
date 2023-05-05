@@ -20,29 +20,46 @@ public class BuildManager : MonoBehaviour
     public GameObject explosiveTurretPrefab;
     public GameObject laserTurretPrefab;
 
-    private TurretBlueprint turretToBuild; // permet de savoir qu'elle tourelle on veut construire D
+    private TurretBlueprint turretToBuild; 
+    private Node selectedNode;
+
+    public NodeUI nodeUI;
 
     public bool CanBuild { get { return turretToBuild != null; } } // permet de mettre une condition directement sur la variable CanBuild (si turretToBuild est different de null alors CanBuild = True)
 
     public bool AsMoney { get { return PlayerStats.Money >= turretToBuild.cost; } }//Condition pour voir si on a assez d'argent pour faire la tourelle 
 
-    public void SelectTurretToBuild(TurretBlueprint turret)
+    public void SelectNode (Node node) //Selectionne le node voulu
     {
-        turretToBuild = turret;
-    }
-    
-    public void BuildTurretON(Node node) //Construction de la tourelle 
-    {
-        if (PlayerStats.Money < turretToBuild.cost)
+        if(selectedNode == node)
         {
-            Debug.Log("Not enough");
+            DeselectNode();
             return;
         }
-        PlayerStats.Money -= turretToBuild.cost;
-        GameObject turret = (GameObject)Instantiate(turretToBuild.prefab, node.transform.position + node.PositionOffSet, node.transform.rotation);
-        node.turret = turret;
+        selectedNode = node;
+        turretToBuild = null;
 
-        Debug.Log("Turret money left" + PlayerStats.Money);
+        nodeUI.SetTarget(node);
+    }
+
+    public void SelectTurretToBuild(TurretBlueprint turret) //Selectionne la tourelle voulu d'après le blueprint
+    {
+        turretToBuild = turret;
+        DeselectNode();
+    }
+
+    public void DeselectNode()
+    {
+        selectedNode = null;
+        nodeUI.Hide();
+    }
+
+
+
+    public TurretBlueprint GetTurretToBuild()
+    {
+        return turretToBuild;
     }
     
+
 }

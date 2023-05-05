@@ -4,8 +4,14 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    private bool gameEnded = false;
-    public GameObject gameOverUI; 
+    public static bool gameEnded;
+    public GameObject gameOverUI;
+    public GameObject WinUI;
+
+    void Start()
+    {
+        gameEnded = false;
+    }
 
     // Update is called once per frame
     void Update()
@@ -26,4 +32,12 @@ public class GameManager : MonoBehaviour
         gameOverUI.SetActive(true);
 
     }
+ 
+    public void WinLevel()
+    {
+        gameEnded = true;
+        WinUI.SetActive(true);
+
+    }
+
 }

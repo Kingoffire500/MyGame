@@ -4,18 +4,18 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class GameOver : MonoBehaviour
+public class LevelCompleted : MonoBehaviour
 {
-    public Text roundsText; 
+    public Text roundsText;
     void OnEnable()
     {
         roundsText.text = PlayerStats.Rounds.ToString();
     }
-    public void Retry()
+    public void Continue()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
     }
-    public void Menu()
+    public void Menu1()
     {
         SceneManager.LoadScene(0);
     }
