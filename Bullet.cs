@@ -5,8 +5,11 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     private Transform target;
-    public float speed = 70f;
-    public float explosionRadius = 0f;
+    public float speed = 70f; // définit la vitesse du projectile
+    public float explosionRadius = 0f; // définit la distance d'explosion du misile
+    public GameObject impactEffect;
+
+    public int damage = 20;
     public void Seek(Transform _target) // Pour aller chercher la target que j'ai fait dans le code Enemy
     {
         target = _target;
@@ -33,22 +36,25 @@ public class Bullet : MonoBehaviour
             HitTarget();
             return;
         }
-        transform.Translate(dir.normalized * distanceThisFrame, Space.World); // On fai bouger la bullet 
+        transform.Translate(dir.normalized * distanceThisFrame, Space.World); // On fait bouger la bullet 
         transform.LookAt(target);
     }
     void HitTarget()
     {
         if (explosionRadius > 0f)
         {
-            Explode();
+            Explode(); // fait exploser le missile si il a un rayon d'explosion 
         } else
         {
-            Damage(target);
+            Damage(target); // sinon il n'explose pas et fait les dégats de base 
         }
         
         Destroy(gameObject);
+        GameObject effectIns = (GameObject)Instantiate(impactEffect, transform.position, transform.rotation);
+        Destroy(effectIns, 5f);
     }
 
+    // fonction permettant de repérer s'il y a des ennemis dans la distance d'explosion et si oui applique les dégats à tous les ennemis présent dedans
     void Explode()
     {
         Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius);
@@ -61,10 +67,20 @@ public class Bullet : MonoBehaviour
         }
     }
 
+    // fonction qui applique des dégats aux ennemis
     void Damage(Transform enemy)
     {
-        Destroy(enemy.gameObject);
+
+        Enemy e =enemy.GetComponent<Enemy>();
+        if (e != null)
+        {
+            e.TakeDamage(damage);
+        }
+        
+       
     }
+
+    // Dessine un cercle qui affiche la portée pour l'éditeur
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;

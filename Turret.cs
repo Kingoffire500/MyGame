@@ -17,9 +17,9 @@ public class Turret : MonoBehaviour
 
     public GameObject bulletPrefab;
     public Transform firePoint;
-    public bool useLaser = false;
-    public int damageOverTime = 30;
-    public float slowPct = 0.5f;
+    public bool useLaser = false; :// définit si on utilise un laser ou pas 
+    public int damageOverTime = 30; // définit les dégats par seconde du laser
+    public float slowPct = 0.5f; // définit la variable de ralentissement du laser
     public LineRenderer lineRenderer;
     public ParticleSystem impactEffect;
 
@@ -67,7 +67,7 @@ public class Turret : MonoBehaviour
             {
                 if (lineRenderer.enabled)
                 {
-                    lineRenderer.enabled = false;
+                    lineRenderer.enabled = false; // permet de stopper le laser lorsque l'ennemi sort de la range du laser
                     impactEffect.Stop();
                 }
 
@@ -106,19 +106,19 @@ public class Turret : MonoBehaviour
 
     void Laser()
     {
-        targetEnemy.TakeDamage(damageOverTime * Time.deltaTime);
-        targetEnemy.Slow(slowPct);
+        targetEnemy.TakeDamage(damageOverTime * Time.deltaTime); // définit les dégats réalisés par la tourelle chaque seconde
+        targetEnemy.Slow(slowPct); // applique le ralentissement à l'ennemi
 
         if (!lineRenderer.enabled)
         {
-            lineRenderer.enabled = true;
+            lineRenderer.enabled = true; // active le laser 
             impactEffect.Play();
         }
 
 
         lineRenderer.SetPosition(0,firePoint.position);
         lineRenderer.SetPosition(1,target.position);
-        Vector3 dir = firePoint.position - target.position;
+        Vector3 dir = firePoint.position - target.position; // définit la position et l'orientation du laser
         impactEffect.transform.position = target.position + dir.normalized * 0.5f;
         impactEffect.transform.rotation = Quaternion.LookRotation(dir);
 
